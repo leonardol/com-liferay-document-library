@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.exportimport.xstream.configurator;
+package com.liferay.document.library.xstream.configurator;
 
 import com.liferay.document.library.lar.xstream.FileEntryConverter;
 import com.liferay.document.library.lar.xstream.FileVersionConverter;

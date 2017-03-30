@@ -12,25 +12,34 @@
  * details.
  */
 
-package com.liferay.document.library.internal.store;
+package com.liferay.document.library.internal.store.wrapper;
 
+import com.liferay.document.library.internal.store.IgnoreDuplicatesStore;
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.document.library.kernel.store.StoreWrapper;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Adolfo Pérez
+ * @author Roberto Díaz
  */
 @Component(
 	immediate = true,
 	property = {
-		"store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore",
-		"store.type=com.liferay.portal.store.file.system.FileSystemStore"
+		"store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore"
 	},
 	service = StoreWrapper.class
 )
-public class IgnoreDuplicatesStoreWrapper implements StoreWrapper {
+public class IgnoreDuplicatesAdvancedFileSystemStoreWrapper
+	implements StoreWrapper {
+
+	@Reference(
+		target = "(store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore)",
+		unbind = "-"
+	)
+	public void setStore(Store store) {
+	}
 
 	@Override
 	public Store wrap(Store store) {
